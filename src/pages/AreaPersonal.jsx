@@ -15,7 +15,7 @@ function AreaPersonal({ auth }) {
     <div className="container mt-5">
       <h1>Área Personal</h1>
       {auth ? (
-        <p>Bienvenido13443413 a tu área personal. Aquí puedes gestionar tu cuenta y tus consultas.</p>
+        <p>Bienvenido a tu área personal. Aquí puedes gestionar tu cuenta y tus consultas.</p>
       ) : (
         <p>Redirigiendo a la página de inicio de sesión...</p>
       )}
