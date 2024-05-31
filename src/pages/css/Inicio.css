@@ -1,0 +1,29 @@
+
+
+
+.inicio{
+  /*background-color: rgb(200,199,187) !important; 
+  background-color: rgb(250,241,187) ;*/
+  background-color: rgb(250, 241, 226) !important;
+   margin-left:-310px;
+   width: 1920px;
+padding: 30px;
+
+}
+
+.inicio h1{
+    font-weight: bold;
+    font-size: 42px;
+}
+.inicio h3{
+    font-weight: bold;
+    color: black;
+    background: rgb(255,255,255); padding: 7px; display: inline-block;
+}
+.inicio p{
+    font-weight: bold;
+    color: black;
+    padding: 3px; display: inline-block;
+}
+
+

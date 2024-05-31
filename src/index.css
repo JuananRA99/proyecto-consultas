@@ -1,0 +1,51 @@
+
+
+body{
+  font-family: Arial, sans-serif;
+/*background-color: #f0f0f0  !important;   */
+background-color: (255,255,255) !important;
+
+
+
+}
+.navbar {
+  margin-left: 250px;
+ /* Color de fondo de la barra de navegación */
+  margin-bottom: 120px; /* Agregar un margen inferior a la barra de navegación */
+}
+
+
+.navbar-brand{
+font-size: 30px !important;
+}
+.navbar li {
+  font-size: 20px;
+  margin-right: 10px; /* Espacio entre los elementos de la lista en el navbar */
+}
+
+
+
+.navbar ul li:first-child {
+  margin-left: 120px; /* Ajusta el margen derecho del primer enlace del navbar */
+}
+
+.nav-link {
+
+  transition: all 0.3s ease; /* Agrega transición suave */
+}
+
+/* Estilos para el hover */
+.nav-link:hover {
+  color: #007bff !important; /* Cambia el color del texto al pasar el mouse */
+  font-size: 1.2em; /* Cambia el tamaño del texto al hacer hover */
+}
+
+.nav-login{
+margin-left: 130px;
+}
+
+
+.nav-login .btn-success{
+margin-right: 30px;
+
+}
