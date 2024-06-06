@@ -1,24 +1,23 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
-function AreaPersonal({ auth }) {
-  const navigate = useNavigate();
+function AreaPersonal() {
+  const [consultas, setConsultas] = useState([]);
 
-  // Redirigir a la página de inicio de sesión si no está autenticado
-  React.useEffect(() => {
-    if (!auth) {
-      navigate('/acceder');
-    }
-  }, [auth, navigate]);
+  const obtenerConsultasUsuario = () => {
+    // Lógica para obtener las consultas del usuario desde el localStorage
+    const consultasUsuario = JSON.parse(localStorage.getItem('consultasUsuario')) || [];
+    setConsultas(consultasUsuario);
+  };
 
   return (
-    <div className="container mt-5">
-      <h1>Área Personal</h1>
-      {auth ? (
-        <p>Bienvenido a tu área personal. Aquí puedes gestionar tu cuenta y tus consultas.</p>
-      ) : (
-        <p>Redirigiendo a la página de inicio de sesión...</p>
-      )}
+    <div>
+      <h2>Área Personal</h2>
+      <button onClick={obtenerConsultasUsuario}>Obtener Mis Consultas</button>
+      <ul>
+        {consultas.map((consulta, index) => (
+          <li key={index}>{consulta}</li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Acceder({ setAuth }) {
+function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,11 +24,17 @@ function Acceder({ setAuth }) {
     // Obtener las credenciales guardadas
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      const { email: storedEmail, password: storedPassword } = user;
-      // Simulación de autenticación básica
+      const { email: storedEmail, password: storedPassword, isAdmin } = user;
+      // Autenticación básica
       if (email === storedEmail && password === storedPassword) {
         setAuth(true);
-        navigate('/tu-area');
+        setIsAdmin(isAdmin); // Establecer isAdmin en el estado
+        if (isAdmin) {
+          navigate('/paneladmin');
+        } else {
+          navigate(redirectPath);
+          setRedirectPath('/tu-area'); // Restablecer ruta de redirección por defecto
+        }
       } else {
         setError('Email o contraseña incorrectos');
       }
