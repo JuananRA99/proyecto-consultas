@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import './index.css';
@@ -16,6 +16,7 @@ import PanelAdmin from './pages/PanelAdmin';
 import ConsultaTelefonica from './pages/ConsultaTelefonica';
 import ConsultaVideollamada from './pages/ConsultaVideollamada.jsx';
 import ConsultaPresencial from './pages/ConsultaPresencial';
+
 
 function App() {
   const [auth, setAuth] = useState(false);
