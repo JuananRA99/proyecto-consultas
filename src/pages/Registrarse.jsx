@@ -35,6 +35,7 @@ function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRed
     };
 
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('userEmail', email); // Guardar email en localStorage
     setAuth(true);
     setAdminStatus(isAdmin);
     if (isAdmin) {

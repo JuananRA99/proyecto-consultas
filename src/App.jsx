@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import './index.css';
@@ -19,10 +19,11 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [redirectPath, setRedirectPath] = useState('/tu-area');
-
   const handleLogout = () => {
     setAuth(false);
     setIsAdmin(false);
+    setIsCartOpen(false); // Cerrar el menú desplegable del carrito
+    setCartItems([]); // Vaciar el carrito
   };
 
   const addToCart = (item) => {
@@ -74,7 +75,7 @@ function App() {
                 ) : (
                   <Link className="btn btn-success mr-2" to="/area-personal">Área Personal</Link>
                 )}
-                <button className="btn btn-danger" onClick={handleLogout}>Salir</button>
+                <Link className="btn btn-danger" to="/" onClick={handleLogout}>Salir</Link>
               </div>
             )}
           </div>
@@ -86,7 +87,7 @@ function App() {
           <Route path="/registrarse" element={<Registrarse setAuth={setAuth} setIsAdmin={setIsAdmin} redirectPath={redirectPath} setRedirectPath={setRedirectPath} />} />
           <Route path="/acceder" element={<Acceder setAuth={setAuth} setIsAdmin={setIsAdmin} redirectPath={redirectPath} setRedirectPath={setRedirectPath} />} />
           <Route path="/paneladmin" element={<PanelAdmin isAdmin={isAdmin} />} />
-          <Route path="/area-personal" element={<AreaPersonal    />} />
+          <Route path="/area-personal" element={<AreaPersonal />} />
           <Route path="/nuevo-password" element={<NuevoPassword />} />
           <Route path="/pasarela-pago" element={<PasarelaPago cartItems={cartItems} isAuthenticated={auth} setRedirectPath={setRedirectPath} />} />
         </Routes>

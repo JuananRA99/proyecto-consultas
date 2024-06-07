@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Carrito = ({ cartItems, removeFromCart }) => {
   const handlePayment = () => {
-    // Aquí podrías realizar cualquier lógica adicional antes de redirigir a la pasarela de pago
-    localStorage.setItem('consultasUsuario',JSON.stringify(cartItems));
+    // Guarda las consultas del usuario en el localStorage
+    localStorage.setItem('consultasUsuario', JSON.stringify(cartItems));
+
+    // Agrega las consultas del usuario a una lista global de consultas
+    const todasLasConsultas = JSON.parse(localStorage.getItem('todasLasConsultas')) || [];
+    const nuevasConsultas = [...todasLasConsultas, ...cartItems];
+    localStorage.setItem('todasLasConsultas', JSON.stringify(nuevasConsultas));
   };
 
   return (
     <div className="carrito">
-      
       <h2>Carrito</h2>
       {cartItems.length === 0 ? (
         <p>No hay elementos en el carrito.</p>
@@ -21,8 +24,10 @@ const Carrito = ({ cartItems, removeFromCart }) => {
               <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(index)}>Eliminar</button>
             </li>
           ))}
-          <button onClick={handlePayment} className="btn btn-primary">Realizar Pago</button>
         </ul>
+      )}
+      {cartItems.length > 0 && (
+        <button onClick={handlePayment} className="btn btn-primary">Realizar Pago</button>
       )}
     </div>
   );

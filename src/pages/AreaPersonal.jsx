@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AreaPersonal() {
   const [consultas, setConsultas] = useState([]);
 
-  const obtenerConsultasUsuario = () => {
-    // Lógica para obtener las consultas del usuario desde el localStorage
+  useEffect(() => {
+    // Obtén las consultas del usuario desde el localStorage al cargar el componente
     const consultasUsuario = JSON.parse(localStorage.getItem('consultasUsuario')) || [];
     setConsultas(consultasUsuario);
-  };
+
+    // Función de limpieza para limpiar las consultas al desmontar el componente
+    return () => {
+      localStorage.removeItem('consultasUsuario');
+    };
+  }, []);
 
   return (
     <div>
       <h2>Área Personal</h2>
-      <button onClick={obtenerConsultasUsuario}>Obtener Mis Consultas</button>
       <ul>
         {consultas.map((consulta, index) => (
-          <li key={index}>{consulta}</li>
+          <li key={index}>{consulta.type}: {consulta.price}€</li>
         ))}
       </ul>
     </div>

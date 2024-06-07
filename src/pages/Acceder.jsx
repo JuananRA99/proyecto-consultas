@@ -29,6 +29,7 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
       if (email === storedEmail && password === storedPassword) {
         setAuth(true);
         setIsAdmin(isAdmin); // Establecer isAdmin en el estado
+        localStorage.setItem('userEmail', email); // Guardar email en localStorage
         if (isAdmin) {
           navigate('/paneladmin');
         } else {
