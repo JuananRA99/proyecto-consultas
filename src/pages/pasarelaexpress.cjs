@@ -1,7 +1,7 @@
-
-const express = ('express');
-const cors = ('cors');
-const stripe = ('stripe')('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');
+import { STRIPE_PRIVATE_KEY } from './config.js';
+const express = require('express');
+const cors = require('cors');
+const stripe = new Stripe (STRIPE_PRIVATE_KEY);
 
 const app = express();
 app.use(cors());
@@ -38,5 +38,5 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-const PORT = 4242;
+const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => console.log(`Servidor Stripe corriendo en http://localhost:${PORT}`));
