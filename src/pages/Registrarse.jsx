@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRedirectPath }) {
   const [email, setEmail] = useState('');
@@ -112,5 +113,12 @@ function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRed
     </div>
   );
 }
+
+Registrarse.propTypes = {
+  setAuth: PropTypes.func.isRequired,
+  setIsAdmin: PropTypes.func.isRequired,
+  redirectPath: PropTypes.string.isRequired,
+  setRedirectPath: PropTypes.func.isRequired,
+};
 
 export default Registrarse;

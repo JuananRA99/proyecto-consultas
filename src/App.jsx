@@ -82,7 +82,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Inicio />} />
-          <Route path="/tu-area" element={<TuArea auth={auth} setAuth={setAuth} />} />
+          <Route path="/tu-area" element={<TuArea auth={auth} />} />
           <Route path="/consultas" element={<Consultas addToCart={addToCart} />} />
           <Route path="/registrarse" element={<Registrarse setAuth={setAuth} setIsAdmin={setIsAdmin} redirectPath={redirectPath} setRedirectPath={setRedirectPath} />} />
           <Route path="/acceder" element={<Acceder setAuth={setAuth} setIsAdmin={setIsAdmin} redirectPath={redirectPath} setRedirectPath={setRedirectPath} />} />

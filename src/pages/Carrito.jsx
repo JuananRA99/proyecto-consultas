@@ -1,15 +1,9 @@
-import React from 'react';
+
+import {Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Carrito = ({ cartItems, removeFromCart }) => {
-  const handlePayment = () => {
-    // Guarda las consultas del usuario en el localStorage
-    localStorage.setItem('consultasUsuario', JSON.stringify(cartItems));
 
-    // Agrega las consultas del usuario a una lista global de consultas
-    const todasLasConsultas = JSON.parse(localStorage.getItem('todasLasConsultas')) || [];
-    const nuevasConsultas = [...todasLasConsultas, ...cartItems];
-    localStorage.setItem('todasLasConsultas', JSON.stringify(nuevasConsultas));
-  };
 
   return (
     <div className="carrito">
@@ -24,13 +18,22 @@ const Carrito = ({ cartItems, removeFromCart }) => {
               <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(index)}>Eliminar</button>
             </li>
           ))}
+                {cartItems.length > 0 && (
+              <Link to="/pasarela-pago" className="btn btn-primary">Realizar Pago</Link>
+      )}
         </ul>
       )}
-      {cartItems.length > 0 && (
-        <button onClick={handlePayment} className="btn btn-primary">Realizar Pago</button>
-      )}
+
     </div>
   );
+};
+
+Carrito.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })).isRequired,
+  removeFromCart: PropTypes.func.isRequired,
 };
 
 export default Carrito;

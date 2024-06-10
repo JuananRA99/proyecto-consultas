@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Consultas = ({ addToCart }) => {
   const handleReserve = () => {
@@ -30,6 +30,12 @@ const Consultas = ({ addToCart }) => {
       </div>
     </div>
   );
+};
+
+
+
+Consultas.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default Consultas;

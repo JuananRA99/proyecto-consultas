@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [email, setEmail] = useState('');
@@ -80,6 +82,13 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
       </form>
     </div>
   );
+}
+
+Acceder.propTypes = {
+  setAuth: PropTypes.func,
+  redirectPath: PropTypes.string,
+  setRedirectPath: PropTypes.func,
+  setIsAdmin: PropTypes.func,
 }
 
 export default Acceder;

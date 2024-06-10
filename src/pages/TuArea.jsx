@@ -1,7 +1,8 @@
-import React from "react";
+
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
-function TuArea({ auth, setAuth }) {
+function TuArea({ auth}) {
   return (
     <div className="container mt-5">
       <h1>Tu Área</h1>
@@ -22,5 +23,9 @@ function TuArea({ auth, setAuth }) {
     </div>
   );
 }
+
+TuArea.propTypes = {
+  auth: PropTypes.bool.isRequired,
+};
 
 export default TuArea;
