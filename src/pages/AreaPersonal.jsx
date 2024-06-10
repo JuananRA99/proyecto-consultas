@@ -1,70 +1,90 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AreaPersonal({ auth }) {
-  const [consultas, setConsultas] = useState([]);
-  const [historialConsultas, setHistorialConsultas] = useState([]);
-  const [loading, setLoading] = useState(true);
+function TuArea({ auth, setAuth }) {
+  const [consulta, setConsulta] = useState({
+    usuario_id: '',
+    fecha: '',
+    hora: '',
+    descripcion: '',
+    email: '',
+  });
 
-  useEffect(() => {
-    if (auth) {
-      // Obtiene las consultas actuales del usuario
-      axios.get('/api/consultas')
-        .then(response => {
-          setConsultas(response.data);
-        })
-        .catch(error => {
-          console.error('Error al obtener las consultas:', error);
-        });
+  const handleChange = (e) => {
+    setConsulta({ ...consulta, [e.target.name]: e.target.value });
+  };
 
-      // Obtiene el historial de consultas del usuario
-      axios.get('/api/historial-consultas')
-        .then(response => {
-          setHistorialConsultas(response.data);
-        })
-        .catch(error => {
-          console.error('Error al obtener el historial de consultas:', error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/create-consulta', consulta);
+      console.log('Consulta creada:', response.data);
+    } catch (error) {
+      console.error('Error creando la consulta:', error);
     }
-  }, [auth]);
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
+  };
 
   return (
     <div className="container mt-5">
-      <h1>Área Personal</h1>
-      <h2>Consultas Pendientes</h2>
-      {consultas.length === 0 ? (
-        <p>No tienes consultas pendientes.</p>
+      <h1>Tu Área</h1>
+      {!auth ? (
+        <>
+          <Link to="../pages/Registrarse.jsx" className="btn btn-primary mr-2">
+            Registrarse
+          </Link>
+          <Link to="../pages/Acceder.jsx" className="btn btn-secondary">
+            Acceder
+          </Link>
+        </>
       ) : (
-        <ul>
-          {consultas.map((consulta, index) => (
-            <li key={index}>
-              {consulta.fecha} - {consulta.hora} - <a href={consulta.zoomLink}>Enlace de Zoom</a>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <h2 className="btn btn-success">Historial de Consultas</h2>
-      {historialConsultas.length === 0 ? (
-        <p>No tienes historial de consultas.</p>
-      ) : (
-        <ul>
-          {historialConsultas.map((consulta, index) => (
-            <li key={index}>
-              {consulta.fecha} - {consulta.hora} - {consulta.descripcion}
-            </li>
-          ))}
-        </ul>
+        <>
+          <Link to="../pages/AreaPersonal.jsx" className="btn btn-success">
+            Accede a tu Área Personal
+          </Link>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="usuario_id"
+              placeholder="ID de Usuario"
+              value={consulta.usuario_id}
+              onChange={handleChange}
+            />
+            <input
+              type="date"
+              name="fecha"
+              placeholder="Fecha"
+              value={consulta.fecha}
+              onChange={handleChange}
+            />
+            <input
+              type="time"
+              name="hora"
+              placeholder="Hora"
+              value={consulta.hora}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="descripcion"
+              placeholder="Descripción"
+              value={consulta.descripcion}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={consulta.email}
+              onChange={handleChange}
+            />
+            <button type="submit" className="btn btn-primary">
+              Crear Consulta
+            </button>
+          </form>
+        </>
       )}
     </div>
   );
 }
 
-export default AreaPersonal;
+export default TuArea;
