@@ -1,7 +1,12 @@
-import { STRIPE_PRIVATE_KEY } from './config.js';
-const express = require('express');
-const cors = require('cors');
-const stripe = new Stripe (STRIPE_PRIVATE_KEY);
+
+import { STRIPE_PRIVATE_KEY } from './config.mjs';
+import express from 'express';
+import cors from 'cors';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(STRIPE_PRIVATE_KEY);
+
+
 
 const app = express();
 app.use(cors());
@@ -38,5 +43,5 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 4242;
+const PORT = 4242;
 app.listen(PORT, () => console.log(`Servidor Stripe corriendo en http://localhost:${PORT}`));
