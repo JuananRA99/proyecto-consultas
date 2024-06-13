@@ -1,0 +1,24 @@
+.acceso{
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+}
+
+.tuArea{
+    margin-top:-20px;
+    background-color: rgb(250, 241, 226) !important;
+    margin-left:-310px;
+    width: 1920px;
+    height: 540px;
+    padding: 30px;
+
+}
+
+.sitio{
+    margin-top: 150px !important;
+    font-size: 55px !important; 
+    font-weight: bold !important;
+}

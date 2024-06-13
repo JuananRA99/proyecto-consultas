@@ -11,7 +11,7 @@ function Inicio() {
    <div className="inicio">
     <div className="container mt-5">
         <header>
-      <h1 className="mb-4">Bienvenido a Más Consultas</h1>
+      <h2 className=" titulo mb-4">Bienvenido a Más Consultas</h2>
       </header>
       <h3>En <strong>Más Consultas </strong> nos preocupamos </h3> 
       <br />

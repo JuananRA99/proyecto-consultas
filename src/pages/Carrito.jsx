@@ -1,13 +1,13 @@
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-
-const Carrito = ({ cartItems, removeFromCart }) => {
-
-
+import './css/Carrito.css';
+const Carrito = ({ cartItems, removeFromCart, handleCloseCart }) => {
   return (
     <div className="carrito">
+          <div className="carrito-header">
       <h2>Carrito</h2>
+      <button className="btn btn-secondary close-button" onClick={handleCloseCart}>X</button>
+      </div>
       {cartItems.length === 0 ? (
         <p>No hay elementos en el carrito.</p>
       ) : (
@@ -18,12 +18,11 @@ const Carrito = ({ cartItems, removeFromCart }) => {
               <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(index)}>Eliminar</button>
             </li>
           ))}
-                {cartItems.length > 0 && (
-              <Link to="/pasarela-pago" className="btn btn-primary">Realizar Pago</Link>
-      )}
+          {cartItems.length > 0 && (
+            <Link to="/pasarela-pago" className="btn btn-primary" onClick={handleCloseCart}>Realizar Pago</Link>
+          )}
         </ul>
       )}
-
     </div>
   );
 };
@@ -34,6 +33,7 @@ Carrito.propTypes = {
     price: PropTypes.number.isRequired,
   })).isRequired,
   removeFromCart: PropTypes.func.isRequired,
+  handleCloseCart: PropTypes.func.isRequired, // Nueva prop
 };
 
 export default Carrito;

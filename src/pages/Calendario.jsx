@@ -6,12 +6,14 @@ import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import PropTypes from 'prop-types';
 import { FaCalendarAlt } from "react-icons/fa";
+import "./css/Calendario.css";
 
 const ReservarCita = ({ accessToken }) => {
   
   const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState('10:00');
-  const [endTime, setEndTime] = useState('11:00');
+  const [startTime, setStartTime] = useState('09:00');
+  const [endTime, setEndTime] = useState('10:00');
+ 
 
   const handleReservarCita = async () => {
     try {
@@ -24,7 +26,7 @@ const ReservarCita = ({ accessToken }) => {
       endDateTime.setMinutes(endTime.split(':')[1]);
 
       const response = await axios.post(
-        '/api/reservar-cita',
+        '/api/calendar',
         {
           startDateTime: startDateTime.toISOString(),
           endDateTime: endDateTime.toISOString(),
@@ -32,29 +34,48 @@ const ReservarCita = ({ accessToken }) => {
         }
       );
       console.log(response.data);
-      // Aquí puedes manejar la respuesta, como mostrar un mensaje de éxito al usuario
+      
     } catch (error) {
       console.error('Error al reservar la cita:', error);
-      // Aquí puedes manejar el error, como mostrar un mensaje de error al usuario
+   
     }
   };
 
   return (
-    <div>
-      <FaCalendarAlt />
-      <div>
+    <div className="reservar-cita-container">
+      <div className="icon-container">
+        <FaCalendarAlt className="calendar-icon" />
+      </div>
+      <div className="form-group">
         <label>Fecha:</label>
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        <DatePicker
+          id="fecha"
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          className="form-control"
+        />
       </div>
-      <div>
-        <label>Hora de inicio:</label>
-        <TimePicker value={startTime} onChange={setStartTime} />
+      <div className="form-group">
+        <label >Hora de inicio:</label>
+        <TimePicker
+          id="horaInicio"
+          value={startTime}
+          onChange={setStartTime}
+          className="form-control hr"
+        />
       </div>
-      <div>
-        <label>Hora de fin:</label>
-        <TimePicker value={endTime} onChange={setEndTime} />
+      <div className="form-group">
+        <label >Hora de fin:</label>
+        <TimePicker
+          id="horaFin"
+          value={endTime}
+          onChange={setEndTime}
+          className="form-control hr"
+        />
       </div>
-      <button onClick={handleReservarCita}>Reservar Cita</button>
+      <div className="form-group">
+        <button onClick={handleReservarCita} className="btn btn-primary btn-block">Reservar Cita</button>
+      </div>
     </div>
   );
 };

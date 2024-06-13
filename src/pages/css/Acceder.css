@@ -1,0 +1,28 @@
+.login {
+    margin-top:-20px;
+     background-color: rgb(250, 241, 226) !important;
+   margin-left:-310px;
+   width: 1920px;
+   height: 540px;
+padding: 30px;
+
+}
+
+
+
+
+
+
+.login h2{
+    margin-top: -20px;
+    padding: 10px;
+    font-weight: bold !important;
+    font-size: 45px !important;
+}
+
+
+.sesion{
+    margin-top: 60px !important; 
+    margin-left: 40px;
+    margin-right: 20px;
+}
