@@ -6,6 +6,7 @@ const api = axios.create({
 
 const registrarse = (data) => api.post('../pages/Registrarse.jsx', data);
 const acceder = (data) => api.post('../pages/Acceder.jsx', data);
+const createEvent = (data) => api.post('/events', data);
 
 const setAuthToken = (token) => {
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -25,4 +26,5 @@ export default {
   getAvailableSlots,
   updateAvailableSlot,
   getAssignedConsultations,
+  createEvent,
 };

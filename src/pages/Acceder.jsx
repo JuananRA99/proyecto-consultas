@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 
-function Acceder({ setAuth }) {
+import  { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,11 +27,18 @@ function Acceder({ setAuth }) {
     // Obtener las credenciales guardadas
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      const { email: storedEmail, password: storedPassword } = user;
-      // Simulación de autenticación básica
+      const { email: storedEmail, password: storedPassword, isAdmin } = user;
+      // Autenticación básica
       if (email === storedEmail && password === storedPassword) {
         setAuth(true);
-        navigate('/tu-area');
+        setIsAdmin(isAdmin); // Establecer isAdmin en el estado
+        localStorage.setItem('userEmail', email); // Guardar email en localStorage
+        if (isAdmin) {
+          navigate('/paneladmin');
+        } else {
+          navigate(redirectPath);
+          setRedirectPath('/tu-area'); // Restablecer ruta de redirección por defecto
+        }
       } else {
         setError('Email o contraseña incorrectos');
       }
@@ -73,6 +83,13 @@ function Acceder({ setAuth }) {
       </form>
     </div>
   );
+}
+
+Acceder.propTypes = {
+  setAuth: PropTypes.func,
+  redirectPath: PropTypes.string,
+  setRedirectPath: PropTypes.func,
+  setIsAdmin: PropTypes.func,
 }
 
 export default Acceder;

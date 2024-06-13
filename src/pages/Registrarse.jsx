@@ -1,121 +1,125 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function Registrarse({ setAuth }) {
-  const [nombreUsuario, setNombreUsuario] = useState('');
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRedirectPath }) {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [nombreError, setNombreError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const manejarRegistro = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
-    // Validar el nombre de usuario
-    const nombreRegex = /^[a-zA-Z0-9_]+$/;
-    if (!nombreRegex.test(nombreUsuario)) {
-      setNombreError('El nombre de usuario solo puede contener letras, números y guiones bajos.');
-      return;
-    } else {
-      setNombreError('');
-    }
-
-    // Validar la contraseña
-    if (password.length < 8) {
-      setPasswordError('La contraseña debe tener al menos 8 caracteres.');
-      return;
-    } else {
-      setPasswordError('');
-    }
-
-    // Validar la coincidencia de contraseña
-    if (password !== confirmPassword) {
-      setConfirmPasswordError('Las contraseñas no coinciden.');
-      return;
-    } else {
-      setConfirmPasswordError('');
-    }
-
-    // Validar el email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setEmailError('Introduce un email válido.');
+      setError('Por favor, introduce un email válido.');
       return;
-    } else {
-      setEmailError('');
+    }
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden.');
+      return;
+    }
+    if (password.length < 8) {
+      setError('La contraseña debe tener al menos 8 caracteres.');
+      return;
     }
 
-    // Guardar el usuario en localStorage
-    const userData = {
-      nombreUsuario,
+    const user = {
       email,
-      password
+      username,
+      password,
+      isAdmin,
     };
-    localStorage.setItem('user', JSON.stringify(userData));
 
-    // Lógica para manejar el registro (puedes sustituirlo con la lógica real)
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('userEmail', email); // Guardar email en localStorage
     setAuth(true);
-    alert('Te has registrado correctamente.');
-    navigate('/tu-area');
+    setAdminStatus(isAdmin);
+    if (isAdmin) {
+      navigate('/paneladmin');
+    } else {
+      navigate(redirectPath);
+    }
+    setRedirectPath('/tu-area');
   };
 
   return (
     <div className="container mt-5">
       <h1>Registrarse</h1>
-      <form onSubmit={manejarRegistro}>
+      <form onSubmit={handleRegister}>
         <div className="form-group">
-          <label>Nombre de Usuario</label>
-          <input
-            type="text"
-            className="form-control"
-            value={nombreUsuario}
-            onChange={(e) => setNombreUsuario(e.target.value)}
-          />
-          {nombreError && <p className="text-danger">{nombreError}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             className="form-control"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
-          {emailError && <p className="text-danger">{emailError}</p>}
         </div>
-        
         <div className="form-group">
-          <label>Contraseña</label>
+          <label htmlFor="username">Nombre de Usuario</label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             className="form-control"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          {passwordError && <p className="text-danger">{passwordError}</p>}
         </div>
         <div className="form-group">
-          <label>Repetir Contraseña</label>
+          <label htmlFor="confirmPassword">Confirmar Contraseña</label>
           <input
             type="password"
             className="form-control"
+            id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
-          {confirmPasswordError && <p className="text-danger">{confirmPasswordError}</p>}
         </div>
-    
-        <div className="form-group mt-4">
-          <button type="submit" className="btn btn-primary">Registrarse</button>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={isAdmin}
+              onChange={() => setIsAdmin(!isAdmin)}
+            />
+            Registrarse como Admin
+          </label>
         </div>
+        {error && <div className="alert alert-danger mt-3">{error}</div>}
+        <button type="submit" className="btn btn-primary mt-3">
+          Registrarse
+        </button>
       </form>
     </div>
   );
 }
+
+Registrarse.propTypes = {
+  setAuth: PropTypes.func.isRequired,
+  setIsAdmin: PropTypes.func.isRequired,
+  redirectPath: PropTypes.string.isRequired,
+  setRedirectPath: PropTypes.func.isRequired,
+};
 
 export default Registrarse;
