@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Calendario from "./Calendario";
 import './css/Consultas.css';
-import { FaCalendarAlt } from "react-icons/fa";
+
 
 const Consultas = ({ addToCart }) => {
   const handleReserve = () => {
