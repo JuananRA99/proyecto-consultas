@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { loadStripe } from '@stripe/stripe-js';
+import { FaStripeS } from "react-icons/fa6";
+import { FaPaypal } from "react-icons/fa";
+import './css/PasarelaPago.css';
 
 const stripePromise = loadStripe('pk_live_51POzt0K0UIR7o4cQthG1seVhDDLSsPOP23FIS90i1xMyFjYBV2XjhhireAAQ3OWZQ5P77pRuQW2F5R30FVZleEj900jAj4Wrp7');
 
@@ -83,8 +86,10 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Pasarela de Pago</h1>
+   <div className="pasarela">
+    <div className="container mt-5 ">
+      
+      <h2>Pasarela de Pago</h2>
       <p>Productos en el carrito:</p>
       
       <ul>
@@ -97,8 +102,11 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
         <div>
           <h3>Selecciona un método de pago:</h3>
           <div>
-            <button className="btn btn-primary mr-2" onClick={() => handleSelectMethod('Stripe')}>Stripe</button>
-            <button className="btn btn-primary" onClick={() => handleSelectMethod('PayPal')}>PayPal</button>
+          <div className=" mb-4">
+            <button className="btn btn-primary btn-pay" onClick={() => handleSelectMethod('Stripe')}><FaStripeS size={25} />
+</button>
+            <button className="btn btn-primary btn-pay" onClick={() => handleSelectMethod('PayPal')}><FaPaypal size={25} /></button>
+          </div>
           </div>
           {selectedMethod === 'PayPal' && !showPayPalButtons && (
             <button className="btn btn-success mt-3" onClick={handlePayPalButton}>Pagar con PayPal</button>
@@ -150,11 +158,12 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
         <div>
           <p>Para hacer el pago, primero debes iniciar sesión o registrarte.</p>
           
-          <Link to="/acceder" className="btn btn-primary mr-2" onClick={() => setRedirectPath('/pasarela-pago')}>Acceder</Link>
-          <Link to="/registrarse" className="btn btn-primary" onClick={() => setRedirectPath('/pasarela-pago')}>Registrarse</Link>
+          <Link to="/acceder" className="btn btn-primary mr-2 boton" onClick={() => setRedirectPath('/pasarela-pago')}>Acceder</Link>
+          <Link to="/registrarse" className="btn btn-primary boton" onClick={() => setRedirectPath('/pasarela-pago')}>Registrarse</Link>
         </div>
       )}
-    </div>
+      </div>
+      </div>
   );
 };
 
@@ -166,5 +175,7 @@ PasarelaPago.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   setRedirectPath: PropTypes.func.isRequired,
 };
+
+
 
 export default PasarelaPago;

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import './css/Consultas.css';
 const Consultas = ({ addToCart }) => {
   const handleReserve = () => {
     addToCart ({ type: 'Consulta', price: 60 });
@@ -10,24 +10,30 @@ const Consultas = ({ addToCart }) => {
   };
 
   return (
+    <div className="consultas">
     <div className="container mt-5">
-      <h1>Consulta Online</h1>
+      <h2 className='online'>Consulta Online</h2>
       <div className="card-deck">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Reservar Cita</h5>
+            <div className="reservas">
+            <h4 className="card-title">Reservar Cita</h4>
             <p className="card-text">Precio: 60€</p>
-            <button className="btn btn-primary" onClick={handleReserve}>Reservar Cita</button>
+            <button className="btn btn-primary" onClick={handleReserve}>Comprar </button>
+          </div>
           </div>
         </div>
+        <div className="reservas">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Comprar Paquete</h5>
+            <h4 className="card-title">Comprar Paquete</h4>
             <p className="card-text">Precio: 210€</p>
-            <button className="btn btn-secondary" onClick={handleBuy}>Comprar Paquete</button>
+            <button className="btn btn-primary" onClick={handleBuy}>Comprar </button>
+          </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,52 +1,31 @@
-import  { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
-function Acceder({ setAuth, redirectPath, setRedirectPath }) {
+import { useState } from 'react';
+import './css/NuevoPassword.css';
+function NuevoPassword() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [success, setSuccess] = useState('');
 
-  const handleLogin = (e) => {
+  
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validación básica de email y contraseña
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError('Por favor, introduce un email válido.');
+      setSuccess('');
       return;
     }
-    if (password.length < 8) {
-      setError('La contraseña debe tener al menos 8 caracteres.');
-      return;
-    }
-
-    // Obtener las credenciales guardadas
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      const { email: storedEmail, password: storedPassword, isAdmin } = user;
-      // Autenticación básica
-      if (email === storedEmail && password === storedPassword) {
-        setAuth(true);
-        if (isAdmin) {
-          navigate('/panel-admin');
-        } else {
-          navigate(redirectPath);
-        }
-        setRedirectPath('/tu-area'); // Restablecer ruta de redirección por defecto
-      } else {
-        setError('Email o contraseña incorrectos');
-      }
-    } else {
-      setError('No se encontró ningún usuario registrado con estas credenciales.');
-    }
+    // Simulación de envío de email para restablecer contraseña
+    localStorage.setItem('resetEmail', email);
+    setSuccess('Se ha enviado un enlace para restablecer tu contraseña.');
+    setError('');
   };
 
   return (
+    <div className="password">
     <div className="container mt-5">
-      <h1>Acceder</h1>
-      <form onSubmit={handleLogin}>
+      <h2>Solicitar nueva contraseña</h2>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -58,35 +37,15 @@ function Acceder({ setAuth, redirectPath, setRedirectPath }) {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
         {error && <div className="alert alert-danger mt-3">{error}</div>}
-        <button type="submit" className="btn btn-primary mt-3">
-          Iniciar sesión
+        {success && <div className="alert alert-success mt-3">{success}</div>}
+        <button type="submit" className="btn btn-primary mt-4">
+          Solicitar nueva contraseña
         </button>
-        <Link to="/nuevo-password" className="btn btn-link mt-3">
-          ¿Olvidaste tu contraseña?
-        </Link>
       </form>
+    </div>
     </div>
   );
 }
 
-
-Acceder.propTypes = {
-  setAuth: PropTypes.func.isRequired,
-  redirectPath: PropTypes.string.isRequired,
-  setRedirectPath: PropTypes.func.isRequired,
-};
-
-
-export default Acceder;
+export default NuevoPassword;

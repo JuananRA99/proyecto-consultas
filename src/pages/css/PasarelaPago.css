@@ -1,0 +1,27 @@
+.btn-pay{
+
+    margin-right: 17px;
+ 
+}
+
+.pasarela{
+    margin-top:-20px;
+     background-color: rgb(250, 241, 226) !important;
+   margin-left:-320px;
+   width: 1920px;
+   height: 560px;
+padding: 30px;
+
+}
+
+h2{
+font-size: 40px !important;
+font-weight: bold !important;
+margin-top: -30px !important;
+}
+
+.boton{
+margin-right: 20px;
+}
+
+

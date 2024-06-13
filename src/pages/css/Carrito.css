@@ -1,0 +1,12 @@
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Ajusta el margen según sea necesario */
+  }
+  
+  .carrito-header h2 {
+    margin: 0; /* Elimina el margen predeterminado del h2 */
+    font-size: 40px;
+    font-weight: bold;
+  }

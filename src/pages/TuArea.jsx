@@ -1,17 +1,20 @@
 
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import './css/TuArea.css';
 
 function TuArea({ auth}) {
   return (
-    <div className="container mt-5">
-      <h1>Tu Área</h1>
+    <div className='tuArea'>
+    <div className="container mt-3">
+      
+      <h2 className='sitio'>Tu Área</h2>
       {!auth ? (
         <>
-          <Link to="/registrarse" className="btn btn-primary mr-2">
+          <Link to="/registrarse" className="btn btn-primary acceso">
             Registrarse
           </Link>
-          <Link to="/acceder" className="btn btn-secondary">
+          <Link to="/acceder" className="btn btn-secondary acceso">
             Acceder
           </Link>
         </>
@@ -20,6 +23,7 @@ function TuArea({ auth}) {
           Accede a tu Área Personal
         </Link>
       )}
+    </div>
     </div>
   );
 }

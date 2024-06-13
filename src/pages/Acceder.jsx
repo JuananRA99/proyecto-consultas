@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
+import './css/Acceder.css';
 
 function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [email, setEmail] = useState('');
@@ -47,11 +48,12 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   };
 
   return (
+    <div className="login">
     <div className="container mt-5">
-      <h1>Acceder</h1>
+      <h2>Acceder</h2>
       <form onSubmit={handleLogin}>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className='email'>Email</label>
           <input
             type="email"
             className="form-control"
@@ -62,7 +64,7 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password" className='email'>Contraseña</label>
           <input
             type="password"
             className="form-control"
@@ -72,6 +74,7 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
             required
           />
         </div>
+        <div className="sesion">
         {error && <div className="alert alert-danger mt-3">{error}</div>}
         <button type="submit" className="btn btn-primary mt-3">
           Iniciar sesión
@@ -79,7 +82,9 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
         <Link to="/nuevo-password" className="btn btn-link mt-3">
           ¿Olvidaste tu contraseña?
         </Link>
+        </div>
       </form>
+    </div>
     </div>
   );
 }

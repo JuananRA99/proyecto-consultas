@@ -4,16 +4,20 @@
 .inicio{
   /*background-color: rgb(200,199,187) !important; 
   background-color: rgb(250,241,187) ;*/
+  margin-top:-20px;
   background-color: rgb(250, 241, 226) !important;
    margin-left:-310px;
    width: 1920px;
+   height: 540px;
+
 padding: 30px;
 
 }
 
-.inicio h1{
-    font-weight: bold;
-    font-size: 42px;
+.inicio h2{
+    margin-top: 60px !important;
+    font-weight: 600;
+    font-size: 50px !important;
 }
 .inicio h3{
     font-weight: bold;
