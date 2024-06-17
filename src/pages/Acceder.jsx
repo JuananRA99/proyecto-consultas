@@ -1,8 +1,9 @@
 import  { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 import './css/Acceder.css';
+
 
 function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     // Validación básica de email y contraseña
@@ -23,7 +24,27 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
       setError('La contraseña debe tener al menos 8 caracteres.');
       return;
     }
+    try {
+      const response = await axios.post('http://localhost:8080/api/users/Acceder', { email, password });
+      const { token, isAdmin } = response.data;
 
+      // Guardar el token en localStorage
+      localStorage.setItem('token', token);
+      setAuth(true);
+      setIsAdmin(isAdmin);
+
+      // Redirigir según el rol del usuario
+      if (isAdmin) {
+        navigate('/paneladmin');
+      } else {
+        navigate(redirectPath);
+        setRedirectPath('/area-personal'); // Restablecer ruta de redirección por defecto
+      }
+    } catch (error) {
+      setError('Email o contraseña incorrectos');
+    }
+  };
+/*
     // Obtener las credenciales guardadas
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -47,6 +68,10 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
     }
   };
 
+  */
+  const loginwithgoogle = ()=>{
+    window.open("http://localhost:5173/auth/google/callback","_self")
+}
   return (
     <div className="login">
     <div className="container mt-5">
@@ -84,6 +109,9 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
         </Link>
         </div>
       </form>
+      <button className='login-with-google-btn' onClick={loginwithgoogle}>
+      Accede con Google
+    </button>
     </div>
     </div>
   );
@@ -95,5 +123,4 @@ Acceder.propTypes = {
   setRedirectPath: PropTypes.func,
   setIsAdmin: PropTypes.func,
 }
-
 export default Acceder;

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { FaCalendarAlt } from "react-icons/fa";
 import "./css/Calendario.css";
 
+
 const ReservarCita = ({ accessToken }) => {
   
   const [startDate, setStartDate] = useState(new Date());
@@ -26,7 +27,7 @@ const ReservarCita = ({ accessToken }) => {
       endDateTime.setMinutes(endTime.split(':')[1]);
 
       const response = await axios.post(
-        '/api/calendar',
+        '/api/calendario',
         {
           startDateTime: startDateTime.toISOString(),
           endDateTime: endDateTime.toISOString(),
@@ -76,7 +77,9 @@ const ReservarCita = ({ accessToken }) => {
       <div className="form-group">
         <button onClick={handleReservarCita} className="btn btn-primary btn-block">Reservar Cita</button>
       </div>
+     
     </div>
+    
   );
 };
 

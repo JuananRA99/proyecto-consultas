@@ -15,18 +15,16 @@ function AreaPersonal() {
   }, []);
 
   return (
-    <div>
+    <div className=''>
       <h2>Área Personal</h2>
       <ul>
         {consultas.map((consulta, index) => (
           <li key={index}>{consulta.type}: {consulta.price}€</li>
         ))}
       </ul>
-      
         <button className='btn btn-secondary '>
             Historial de consultas
         </button>
-   
     </div>
   );
 }

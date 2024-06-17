@@ -135,8 +135,8 @@ height: 135px;
   background-color: rgb(237, 198, 156);
   color: #333;
   text-align: center;
-  padding: 20px 0;
-  position: fixed;
+  padding: 0;
+  position:static;
   width: 100%;
   bottom: 0;
 }

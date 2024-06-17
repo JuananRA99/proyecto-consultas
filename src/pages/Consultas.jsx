@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import Calendario from "./Calendario";
 import './css/Consultas.css';
-
+import BotonGoogleCalendar from "../components/BotonGoogleCalendar";
+import { FaCalendarAlt } from "react-icons/fa";
+import "./css/Calendario.css";
 
 const Consultas = ({ addToCart }) => {
   const handleReserve = () => {
@@ -33,7 +34,8 @@ const Consultas = ({ addToCart }) => {
           </div>
           <div className="card">
             <div className="card-body">
-            <Calendario/>
+            <FaCalendarAlt className="calendar-icon" />
+            <BotonGoogleCalendar />
             </div>
           </div>
         </div>

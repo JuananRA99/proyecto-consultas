@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './css/Registrarse.css';
+
 function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRedirectPath }) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');

@@ -70,7 +70,7 @@ function App() {
           <Route path="/pasarela-pago" element={<PasarelaPago cartItems={cartItems} isAuthenticated={auth} setRedirectPath={setRedirectPath} />} />
         </Routes>
       </div>
-<Footer />
+    <Footer />
 
     </body>
   );
