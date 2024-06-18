@@ -1,18 +1,26 @@
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GrCart } from "react-icons/gr";
+import { GrCart } from 'react-icons/gr';
 import Carrito from '../pages/Carrito';
 import PropTypes from 'prop-types';
 import '../index.css';
 
 const NavBar = ({ auth, isAdmin, cartItems, toggleCart, isCartOpen, handleLogout, removeFromCart, handleCloseCart }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg">
-      <Link className="navbar-brand " to="/">Más Consultas</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <Link className="navbar-brand" to="/">Más Consultas</Link>
+      {/* Botón del menú de hamburguesa */}
+      <button className="navbar-toggler" type="button" onClick={toggleNav}>
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <div className={`collapse navbar-collapse ${isNavOpen ? 'show' : ''}`}>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/">Inicio</Link>
@@ -34,6 +42,7 @@ const NavBar = ({ auth, isAdmin, cartItems, toggleCart, isCartOpen, handleLogout
             )}
           </li>
         </ul>
+        
         {auth && (
           <div className="nav-login d-flex">
             {isAdmin ? (

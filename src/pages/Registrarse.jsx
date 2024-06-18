@@ -97,16 +97,7 @@ function Registrarse({ setAuth, setIsAdmin: setAdminStatus, redirectPath, setRed
             required
           />
         </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={isAdmin}
-              onChange={() => setIsAdmin(!isAdmin)}
-            />
-            Registrarse como Admin
-          </label>
-        </div>
+       
         {error && <div className="alert alert-danger mt-3">{error}</div>}
         <button type="submit" className="btn btn-primary mt-3">
           Registrarse

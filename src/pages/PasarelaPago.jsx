@@ -92,7 +92,7 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
       <h2>Pasarela de Pago</h2>
       <p>Productos en el carrito:</p>
       
-      <ul>
+      <ul className='tipo-consulta'>
         {cartItems.map((item, index) => (
           <li key={index}>{item.type}: {item.price}€</li>
         ))}
@@ -100,7 +100,7 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
       <h3>Total: {total}€</h3>
       {isAuthenticated ? (
         <div>
-          <h3>Selecciona un método de pago:</h3>
+          <h3 className='metodo-pago'>Selecciona un método de pago:</h3>
           <div>
           <div className=" mb-4">
             <button className="btn btn-primary btn-pay" onClick={() => handleSelectMethod('Stripe')}><FaStripeS size={25} />
@@ -156,7 +156,7 @@ const PasarelaPago = ({ cartItems, isAuthenticated, setRedirectPath }) => {
         </div>
       ) : (
         <div>
-          <p>Para hacer el pago, primero debes iniciar sesión o registrarte.</p>
+          <p className='pago'>Para hacer el pago, primero debes iniciar sesión o registrarte.</p>
           
           <Link to="/acceder" className="btn btn-primary mr-2 boton" onClick={() => setRedirectPath('/pasarela-pago')}>Acceder</Link>
           <Link to="/registrarse" className="btn btn-primary boton" onClick={() => setRedirectPath('/pasarela-pago')}>Registrarse</Link>

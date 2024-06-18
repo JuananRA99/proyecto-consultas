@@ -1,9 +1,9 @@
 .login {
-    margin-top:-20px;
+    margin-top:-80px;
      background-color: rgb(250, 241, 226) !important;
    margin-left:-310px;
    width: 1920px;
-   height: 540px;
+   height: 620px;
 padding: 30px;
 
 }
@@ -28,4 +28,99 @@ padding: 30px;
 }
 
 
+@media (max-width: 820px) {
+    .login {
+    margin-left: -62px;
+    margin-top: 120px;
+      width: 830px; /* Ancho completo */
+      height: 786px; /* Ajustar altura automáticamente */
+      padding: 30px; /* Reducir padding */
+      margin-bottom: -500px;
+    }
+  
 
+  .login .form-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(250, 241, 226) !important;
+    border: 1px solid rgb(250, 241, 226) !important;
+    box-shadow: 0px 0px 10px rgb(250, 241, 226) !important;
+    font-size: 20px;
+  }
+    .login h2 {
+      font-size: 3rem !important; /* Ajustar tamaño de fuente */
+      height: 100px;
+    }
+
+    
+    .login .sesion .btn {
+        display: inline-block;
+        margin-top: 23px;
+        width: 40%;
+        margin-left: 30px;
+        font-size: 1.8rem;
+        height: 80px;
+      }
+
+
+
+
+
+    }
+    
+
+
+
+  
+  
+  /* Media queries para móviles */
+  @media (max-width: 480px) {
+    .login {
+      margin-left: -12px; /* Eliminar margen negativo */
+   margin-top: 155px;
+      width: 430px; /* Ancho completo */
+      height: 682px; /* Ajustar altura automáticamente */
+     padding: 10px;
+  position: relative;
+    }
+  
+   
+  .login .form-group{
+    margin-top: 5px;
+    margin-bottom: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(250, 241, 226) !important;
+    border: 1px solid rgb(250, 241, 226) !important;
+    box-shadow: 0px 0px 10px rgb(250, 241, 226) !important;
+    font-size: 20px;
+  }
+    .login h2 {
+      font-size: 3rem !important; /* Ajustar tamaño de fuente */
+      height: 100px;
+    }
+
+
+    .login .sesion .btn {
+        display: block;
+        margin-top: 200px;
+        width: 50%;
+        margin-left: 30px;
+        font-size: 1.3rem;
+        height: 90px;
+      }
+
+      
+    }
+
+
+  
+ 

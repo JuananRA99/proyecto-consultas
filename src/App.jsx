@@ -15,6 +15,7 @@ import PasarelaPago from './pages/PasarelaPago';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
+
 function App() {
   const [auth, setAuth] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [redirectPath, setRedirectPath] = useState('/tu-area');
 
-  const handleLogout = () => {
+  const handleLogout = () => {<div className=""></div>
     setAuth(false);
     setIsAdmin(false);
     setIsCartOpen(false);

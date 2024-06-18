@@ -5,12 +5,12 @@
 }
 
 .pasarela{
-    margin-top:-20px;
-     background-color: rgb(250, 241, 226) !important;
-   margin-left:-320px;
-   width: 1920px;
-   height: 560px;
-padding: 30px;
+    margin-top: -80px;
+    background-color: rgb(250, 241, 226) !important;
+    margin-left: -310px;
+    width: 1920px;
+    padding: 30px;
+    height: 620px;
 
 }
 
@@ -24,4 +24,110 @@ margin-top: -30px !important;
 margin-right: 20px;
 }
 
+@media (max-width: 820px) {
+    .pasarela {
+    margin-left: -62px;
+    margin-top: 155px !important;
+      width: 830px; /* Ancho completo */
+  height: 796px;/* Ajustar altura automáticamente */
+      padding: 30px; /* Reducir padding */
+      margin-bottom: -500px;
+    }
+  
+    .pasarela h2 {
+      font-size: 2.5rem !important; /* Ajustar tamaño de fuente */
+      height: 100px;
+    }
+    
+  
+    .pasarela h2 {
+      font-size: 2.5rem !important; /* Ajustar tamaño de fuente */
+      height: 100px;
+    }
+    .pasarela p{
+      margin-top: -40px !important;
+      font-size: 30px !important;
+    }
+  
+    .pasarela h3 {
+      margin-top: 20px;
+      font-size: 1.95rem; /* Ajustar tamaño de fuente */
+      margin-bottom: -10px;
+    }
+    .pasarela .btn {
+        display: block;
+        margin-top: 23px;
+        width: 20%;
+        margin-left: 30px;
+        font-size: 1.8rem;
+        height: 60px;
 
+      }
+     
+      .pasarela .btn-success{
+         height: 98px;
+         width: 180px;
+     
+         
+      }
+  .boton{
+    font-size: 1.5rem !important;
+    width: 200px !important;
+  }
+
+  .pasarela .pago{
+    margin-top: 15px !important;
+  font-size: 20px !important;
+   }
+  
+    }
+
+
+  
+  
+  /* Media queries para móviles */
+  @media (max-width: 480px) {
+    .pasarela {
+      margin-left: -12px; /* Eliminar margen negativo */
+   margin-top: 120px;
+      width: 430px; /* Ancho completo */
+      height: 682px; /* Ajustar altura automáticamente */
+     padding: 10px;
+  position: relative;
+    }
+  
+    .pasarela h2 {
+      margin-top: -30px !important;
+      font-size: 2rem !important; /* Ajustar tamaño de fuente */
+      margin-bottom: -50px;
+    }
+  
+  .pasarela h3{
+    margin-top: -5px;
+      font-size: 16px;
+      margin-bottom: 5px !important;
+  }
+
+  
+  .pasarela .btn {
+    display: block;
+    margin-top: 13px;
+    width: 160px !important;
+    margin-left: 30px;
+    font-size: 1.2rem !important;
+    height: 40px;
+
+  }
+ 
+  .pasarela .btn-success{
+    height: 80px;
+    width: 150px;
+    font-size: 1.5rem;
+ }
+ .pasarela .pago{
+  margin-top: 10px !important;
+font-size: 20px !important;
+ }
+
+
+  }

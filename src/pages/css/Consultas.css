@@ -1,10 +1,10 @@
 .consultas {
-  margin-top: -20px;
+  margin-top: -80px;
   background-color: rgb(250, 241, 226) !important;
   margin-left: -310px;
   width: 1920px;
   padding: 30px;
-  height: 540px;
+  height: 620px;
 }
 
 .container {
@@ -48,3 +48,77 @@
   font-size: 45px !important;
   text-align: center;
 }
+
+@media (max-width: 820px) {
+  .consultas {
+  margin-left: -62px;
+  margin-top: 120px;
+    width: 830px; /* Ancho completo */
+    height: 786px; /* Ajustar altura automáticamente */
+    padding: 30px; /* Reducir padding */
+    margin-bottom: -500px;
+  }
+
+  .consultas h2 {
+    font-size: 2.5rem !important; /* Ajustar tamaño de fuente */
+    height: 100px;
+  }
+  
+
+  .consultas h2 {
+    font-size: 2.5rem !important; /* Ajustar tamaño de fuente */
+    height: 100px;
+  }
+  .consultas p{
+    margin-top: 20px !important;
+    font-size: 30px !important;
+  }
+
+  .consultas h3 {
+    margin-top: 20px;
+    font-size: 1.95rem; /* Ajustar tamaño de fuente */
+  }
+  .consultas .btn {
+    display: block;
+    
+    width: 70%;
+    margin-left: 30px;
+    font-size: 1.3rem;
+  }
+ 
+}
+
+/* Media queries para móviles */
+@media (max-width: 480px) {
+  .consultas {
+    margin-left: -12px; /* Eliminar margen negativo */
+    margin-top: 155px;
+    width: 430px; /* Ancho completo */
+    height: 682px; /* Ajustar altura automáticamente */
+   padding: 10px;
+position: relative;
+  }
+
+  .consultas h2 {
+    
+    font-size: 1.9rem !important; /* Ajustar tamaño de fuente */
+  }
+
+.consultas h3{
+  margin-top: 20px;
+    font-size: 12px;
+}
+
+.card-deck{
+  width: 100%;
+}
+
+  .consultas .btn {
+    display: block;
+    
+    width: 120px;
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+}
+
