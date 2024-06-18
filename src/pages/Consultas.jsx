@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import './css/Consultas.css';
+import BotonGoogleCalendar from "../components/BotonGoogleCalendar";
+import { FaCalendarAlt } from "react-icons/fa";
+import "./css/Calendario.css";
 
 const Consultas = ({ addToCart }) => {
   const handleReserve = () => {
@@ -17,16 +20,22 @@ const Consultas = ({ addToCart }) => {
         <div className="card-deck">
           <div className="card">
             <div className="card-body">
-              <h4 className="card-title">Reservar Cita</h4>
+              <h4 className="card-title">Consulta</h4>
               <p className="card-text">Precio: 60€</p>
               <button className="btn btn-primary" onClick={handleReserve}>Comprar</button>
             </div>
           </div>
           <div className="card">
             <div className="card-body">
-              <h4 className="card-title">Comprar Paquete</h4>
+              <h4 className="card-title">Paquete de 4 Consultas</h4>
               <p className="card-text">Precio: 210€</p>
               <button className="btn btn-primary" onClick={handleBuy}>Comprar</button>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card-body">
+            <FaCalendarAlt className="calendar-icon" />
+            <BotonGoogleCalendar />
             </div>
           </div>
         </div>
