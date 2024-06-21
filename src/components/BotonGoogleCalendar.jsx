@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import '../pages/css/Carrito.css';
 
 const GoogleCalendarButton = () => {
   useEffect(() => {
@@ -19,7 +20,9 @@ const GoogleCalendarButton = () => {
   return (
     <>
       <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet" />
-      <div id="google-calendar-button"></div>
+      <div className="custom-google-calendar-button">
+        <div id="google-calendar-button"></div>
+      </div>
     </>
   );
 };

@@ -21,7 +21,7 @@ const Consultas = ({ addToCart }) => {
           <div className="card">
             <div className="card-body">
               <h4 className="card-title">Consulta</h4>
-              <p className="card-text">Precio: 60€</p>
+              <p className="card-text barato">Precio: 60€</p>
               <button className="btn btn-primary" onClick={handleReserve}>Comprar</button>
             </div>
           </div>
