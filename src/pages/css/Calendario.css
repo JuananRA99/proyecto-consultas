@@ -22,3 +22,8 @@
   .btn {
     margin-top: 10px; 
   }
+  .card-deck {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }

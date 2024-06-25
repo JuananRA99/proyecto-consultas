@@ -1,7 +1,7 @@
 import  { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { loginUser } from '../services/api';
 import './css/Acceder.css';
 
 
@@ -25,7 +25,8 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:8080/api/users/Acceder', { email, password });
+      const response = await loginUser(userData);
+      const userData = { email, password };
       const { token, isAdmin } = response.data;
 
       // Guardar el token en localStorage
@@ -38,7 +39,7 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
         navigate('/paneladmin');
       } else {
         navigate(redirectPath);
-        setRedirectPath('/area-personal'); // Restablecer ruta de redirección por defecto
+        setRedirectPath('/tu-area'); // Restablecer ruta de redirección por defecto
       }
     } catch (error) {
       setError('Email o contraseña incorrectos');
@@ -69,9 +70,32 @@ function Acceder({ setAuth, redirectPath, setRedirectPath, setIsAdmin }) {
   };
 
   */
-  const loginwithgoogle = ()=>{
-    window.open("http://localhost:5173/auth/google/callback","_self")
-}
+  const loginwithgoogle = async () => {
+    const googleLoginUrl = "http://localhost:8080/api/v1/auth/login/google";
+    const newWindow = window.open(googleLoginUrl, "_blank", "width=500,height=600");
+
+    const checkAuthStatus = async () => {
+      try {
+        const response = await api.get('/auth/login/success', { withCredentials: true });
+        if (response.status === 200 && response.data.user) {
+          setAuth(true);
+          setIsAdmin(response.data.user.isAdmin);
+          localStorage.setItem('userEmail', response.data.user.email);
+          navigate('/tu-area');
+        }
+      } catch (error) {
+        console.error('Error al verificar el estado de autenticación:', error);
+      }
+    };
+
+    const timer = setInterval(() => {
+      if (newWindow.closed) {
+        clearInterval(timer);
+        checkAuthStatus();
+      }
+    }, 500);
+  }
+
   return (
     <div className="login">
     <div className="container mt-5">
