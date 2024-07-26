@@ -25,7 +25,7 @@ function Registrarse({ setAuth, setIsAdmin, redirectPath, setRedirectPath }) {
       setError('Las contraseñas no coinciden.');
       return;
     }
-    if (password.length < 8) {
+    if (password.length < 10) {
       setError('La contraseña debe tener al menos 8 caracteres.');
       return;
     }
@@ -33,7 +33,7 @@ function Registrarse({ setAuth, setIsAdmin, redirectPath, setRedirectPath }) {
     try {
       const userData = {
         email,
-        name, // Cambio de username a name
+        name,
         password,
         isAdmin: false,
       };
@@ -69,13 +69,14 @@ function Registrarse({ setAuth, setIsAdmin, redirectPath, setRedirectPath }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name">Nombre de Usuario</label> {/* Cambio de username a name */}
+            <label htmlFor="name">Nombre de Usuario</label> 
             <input
               type="text"
               className="form-control"
               id="name" 
               value={name}
-              onChange={(e) => setName(e.target.value)} // Cambio de username a name
+              onChange={(e) => setName(e.target.value)} 
+              autoComplete="name"
               required
             />
           </div>
@@ -87,6 +88,7 @@ function Registrarse({ setAuth, setIsAdmin, redirectPath, setRedirectPath }) {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="password"
               required
             />
           </div>
@@ -98,6 +100,7 @@ function Registrarse({ setAuth, setIsAdmin, redirectPath, setRedirectPath }) {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="password"
               required
             />
           </div>

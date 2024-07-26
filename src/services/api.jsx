@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 const API_URL = '/api/users';
-
+console.log('API URL:', API_URL);
 // Registrar un usuario
 export const registerUser = async (userData) => {
   try {
@@ -20,13 +20,20 @@ export const registerUser = async (userData) => {
 
 // Iniciar sesión de usuario
 export const loginUser = async (credentials) => {
+  console.log('Credentials:', credentials); 
   try {
-    const response = await api.post(`${API_URL}/Acceder`, credentials);
+    const response = await api.post(`${API_URL}/Acceder`,credentials);
+    console.log('Response:', response.data); 
     return response.data;
   } catch (error) {
-    console.error('Error al llamar a loginUser:', error.response || error.message);
-    throw error;
-  }
+    if (error.response && error.response.status === 401) {
+          console.error('Error al autenticar:', error.response.data.error);
+         throw new Error('Email o contraseña incorrectos');
+       } else {
+          console.error('Error desconocido:', error.message);
+          throw error;
+      }
+   }
 };
 
 // Obtener perfil de usuario
@@ -58,3 +65,30 @@ export const updateUserProfile = async (token, userData) => {
     throw error;
   }
 };
+// Función para obtener todas las consultas
+export const getConsultas = async () => {
+  try {
+    const response = await api.get(`${API_URL}/consultas`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener consultas:', error);
+    throw error;
+  }
+};
+
+// Agrega más funciones si es necesario, por ejemplo para crear una consulta
+export const createConsulta = async (consultaData) => {
+  try {
+    const response = await api.post(`${API_URL}/consultas`, consultaData);
+    return response.data;
+  } catch (error) {
+    console.error('Error al crear consulta:', error);
+    throw error;
+  }
+};
+
+//citas de usuario
+export const createAppointment = (userId, date) => api.post('/citas', { userId, date });
+export const getUserAppointments = (userId) => api.get(`/user/${userId}`);
+
+

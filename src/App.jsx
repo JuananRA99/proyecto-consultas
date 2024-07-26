@@ -46,7 +46,7 @@ function App() {
   };
 
   return (
-    <body>
+    <div>
       <div className="container mt-5">
         <NavBar
           auth={auth}
@@ -72,7 +72,7 @@ function App() {
       </div>
         <Footer />
 
-    </body>
+    </div>
   );
 }
 
